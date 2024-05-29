@@ -128,12 +128,6 @@ function pelican_ConfigOptions() {
             "Type" => "text",
             "Size" => 10,
         ],
-        "location_id" => [
-            "FriendlyName" => "Location ID",
-            "Description" => "ID of the Location to automatically deploy to.",
-            "Type" => "text",
-            "Size" => 10,
-        ],
         "dedicated_ip" => [
             "FriendlyName" => "Dedicated IP",
             "Description" => "Assign dedicated ip to the server (optional)",
@@ -351,7 +345,6 @@ function pelican_CreateAccount(array $params) {
         $io = pelican_GetOption($params, 'io');
         $cpu = pelican_GetOption($params, 'cpu');
         $disk = pelican_GetOption($params, 'disk');
-        $location_id = pelican_GetOption($params, 'location_id');
         $dedicated_ip = pelican_GetOption($params, 'dedicated_ip') ? true : false;
         $port_range = pelican_GetOption($params, 'port_range');
         $port_range = isset($port_range) ? explode(',', $port_range) : [];
@@ -381,7 +374,6 @@ function pelican_CreateAccount(array $params) {
                 'backups' => (int) $backups,
             ],
             'deploy' => [
-                'locations' => [(int) $location_id],
                 'dedicated_ip' => $dedicated_ip,
                 'port_range' => $port_range,
             ],
